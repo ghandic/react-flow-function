@@ -1,0 +1,23 @@
+.tiptap {
+  cursor: auto;
+  background: #fff;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+}
+
+.tiptap:first-child {
+  margin-top: 0;
+}
+
+.tiptap .mention {
+  border-radius: 0.4rem;
+  box-decoration-break: clone;
+  padding: 0.1rem 0.3rem;
+  background-color: var(--red-light);
+  color: var(--red);
+}
+
+.tiptap .mention[data-valid="true"] {
+  background-color: var(--purple-light);
+  color: var(--purple);
+}
