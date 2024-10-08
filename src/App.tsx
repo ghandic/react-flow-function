@@ -58,7 +58,7 @@ const initialNodes = [
     position: { x: 550, y: 150 },
     data: { value: "", label: "Result" }, // Initially showing 0 as result
   },
-];
+] as AppNode[];
 
 const initialEdges = [
   {
@@ -79,7 +79,7 @@ const initialEdges = [
     target: "result_1",
     animated: true,
   },
-];
+] as Edge[];
 const App = () => {
   const edgeReconnectSuccessful = useRef(true);
 
@@ -87,7 +87,7 @@ const App = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const onNodesDelete = useCallback(
-    (deleted) => {
+    (deleted: AppNode[]) => {
       setEdges(
         deleted.reduce((acc, node) => {
           const incomers = getIncomers(node, nodes, edges);
@@ -103,6 +103,7 @@ const App = () => {
               id: `${source}->${target}`,
               source,
               target,
+              animated: true,
             }))
           );
 

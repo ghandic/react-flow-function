@@ -1,10 +1,15 @@
 import { cn } from "@/lib/utils";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
-const MentionList = forwardRef((props, ref) => {
+interface MentionListProps {
+  items: string[];
+  command: (item: { id: string }) => void;
+}
+
+const MentionList = forwardRef((props: MentionListProps, ref) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const selectItem = (index) => {
+  const selectItem = (index: number) => {
     const item = props.items[index];
 
     if (item) {
@@ -29,7 +34,7 @@ const MentionList = forwardRef((props, ref) => {
   useEffect(() => setSelectedIndex(0), [props.items]);
 
   useImperativeHandle(ref, () => ({
-    onKeyDown: ({ event }) => {
+    onKeyDown: ({ event }: { event: KeyboardEvent }) => {
       if (event.key === "ArrowUp") {
         upHandler();
         return true;

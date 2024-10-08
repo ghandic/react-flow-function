@@ -81,7 +81,7 @@ const FunctionNode = ({ id, data }: NodeProps<FunctionNode>) => {
       );
       // Swap out the @ prefix for mathjs to evaluate
       value = math.evaluate(data.expression.replace(/@/g, ""), inputNodesMap);
-    } catch (error) {
+    } catch {
       // console.error("Error evaluating expression:", error);
     }
     return value;
@@ -118,7 +118,9 @@ const FunctionNode = ({ id, data }: NodeProps<FunctionNode>) => {
       content: data.expressionHTML,
       onUpdate: ({ editor }) => {
         // only update if changes
-        if (editor.getHTML() === data.expressionHTML) return;
+        if (editor.getHTML() === data.expressionHTML) {
+          return;
+        }
         updateNodeData(id, {
           expressionHTML: editor.getHTML(),
           expression: editor.getText(),
